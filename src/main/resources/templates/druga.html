@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Druga</title>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+<div class="dodawanie">
+    <div class="wybrane">
+        <p th:text="${dish.getId()}"></p>
+        <p th:text="${dish.getName()}"></p>
+    </div>
+
+    <div class="ingredient" th:each="ingredient : ${ingredients}">
+        <p th:text="${ingredient.getId()}"></p>
+        <p th:text="${ingredient.getName()}"></p>
+        <p th:text="${ingredient.getAmount()}"></p>
+        <a th:href="@{'/testowa/add/' + ${dish.getId()} + '/' + ${ingredient.getId()}}">Dodaj składnik do dania</a>
+    </div>
+</div>
+
+<div class="usuwanie">
+    <div class="wybrane">
+        <p th:text="${dish.getId()}"></p>
+        <p th:text="${dish.getName()}"></p>
+    </div>
+
+    <div class="ingredient" th:each="ingredientFromDish : ${dish.getIngredients()}">
+        <p th:text="${ingredientFromDish.getId()}"></p>
+        <p th:text="${ingredientFromDish.getName()}"></p>
+        <p th:text="${ingredientFromDish.getAmount()}"></p>
+        <a th:href="@{'/testowa/del/' + ${dish.getId()} + '/' + ${ingredientFromDish.getId()}}">Usun składnik</a>
+    </div>
+</div>
+
+
+    <a href="/">Wroc</a>
+
+</body>
+</html>

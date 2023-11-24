@@ -1,0 +1,11 @@
+body{
+    background-color: blue;
+}
+
+.dish{
+    background-color: tomato;
+    width: 75px;
+    height: 125px;
+    float: left;
+    margin: 5px;
+}

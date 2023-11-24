@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sprawdzam czy dziala</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="dish" th:each="dish : ${dishes}">
+        <p th:text="${dish.getId()}"></p>
+        <p th:text="${dish.getName()}"></p>
+        <a th:href="@{'/testowa/' + ${dish.getId()}}">Dodaj składniki</a>
+    </div>
+
+    <form th:action="@{/add-dish}" th:object="${newDish}" method="post">
+        <p>Nazwa: <input type="text" th:field="*{name}"></p>
+
+        <input type="submit" value="Dodaj nowe danie">
+
+    </form>
+
+    <form th:action="@{/delete-dish}" method="post">
+        <p>Nazwa: <input type="text" name="id"></p>
+        <input type="submit" value="Usuń Danie">
+    </form>
+
+    <form th:action="@{/update-dish}" th:object="${updateDish}" method="post">
+        <p>ID: <input type="text" name="id"></p>
+        <p>Nazwa: <input type="text" th:field="*{name}"></p>
+        <input type="submit" value="Zaktualizuj danie">
+    </form>
+
+    <a href="/v1/menu/ingredient">Zobacz składniki</a>
+
+</body>
+</html>
