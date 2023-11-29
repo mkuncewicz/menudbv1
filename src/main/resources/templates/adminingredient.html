@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/ingredient.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="edit">
+
+        <br>
+        Dodawanie:
+        <form th:action="@{/admin/ingredient/add-ingredient}" method="post" th:object="${newIngredient}">
+            <p>Nazwa: <input type="text" th:field="*{name}" required></p>
+            <input type="submit" value="Dodaj nowe składnik">
+        </form>
+        <br><br>
+        Usuwanie:
+        <form th:action="@{/admin/ingredient/del-ingredient}" method="post">
+            <p>ID: <input type="text" name="id" required></p>
+            <input type="submit" value="Usuń składnik">
+
+        </form>
+        <br><br>
+        Edytowanie:
+        <form th:action="@{/admin/ingredient/update-ingredient}" th:object="${updateIngredient}" method="post">
+            <p>ID:<input type="text" name="id"></p>
+            <p>Nazwa: <input type="text" th:field="*{name}"></p>
+            <input type="submit" value="Zaktualizuj składnik">
+        </form>
+    </div>
+
+    <div class="list-of-ingredients">
+        <div class="ingredient" th:each="ing : ${ingredients}">
+            <div class="id">
+                <p th:text="${ing.getId()}"></p>
+            </div>
+            <p style="text-align: center;" th:text="${ing.getName()}"></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

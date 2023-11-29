@@ -25,7 +25,7 @@ public class HomeController {
 
     private List<Ingredient> ingredientList = new ArrayList<>();
 
-    @GetMapping("/")
+    @GetMapping("/xd")
     public String home(Model model){
         dishList = (List<Dish>) dishRepository.findAll();
         model.addAttribute("dishes", dishList);

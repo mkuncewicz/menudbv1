@@ -1,0 +1,78 @@
+body{
+    background-color: cadetblue;
+    font-family: cursive;
+}
+
+.container{
+    display: flex;
+}
+
+
+.dish{
+
+}
+
+.dish-name{
+    background-color: #f5deb3;
+    width: 300px;
+    height: 50vh;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.dish-contain{
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.dish-ingredient{
+    background-color: #f5f0e6;
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    display: flex;
+}
+
+.dish-ingredient p{
+    width: 85%;
+}
+
+.dish-ingredient a{
+    width: 15%;
+    height: 100%;
+}
+
+.list-of-ingredient{
+    background-color: rgb(40, 129, 132);
+    width: 50vw;
+    height: 70vh;
+    margin-left: 15vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ingredient{
+    background-color: brown;
+    width: 100px;
+    height: 125px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin: 5px;
+}
+
+.ingredient button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

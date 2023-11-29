@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/editdish.css">
+    <title>Edytuj danie</title>
+</head>
+<body>
+<a href="/admin">Wróć</a>
+<div class="container">
+
+    <div class="dish">
+        <div class="dish-name">
+            <p th:text="${dish.getName()}"></p>
+            <p th:text="${dish.getCost()}"></p>
+        </div>
+
+        <div class="dish-contain">
+            <div class="dish-ingredient" th:each="dishIng : ${dish.getIngredients()}">
+                    <p th:text="${dishIng.getName()}"></p>
+                    <a th:href="@{'/dishedit/del/' + ${dish.getId()} + '/' + ${dishIng.getId()}}">Usuń</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-of-ingredient">
+        <div class="ingredient" th:each="ing : ${ingredients}">
+            <p th:text="${ing.getName()}"></p>
+            <a th:href="@{'/dishedit/add/' + ${dish.getId()} + '/' + ${ing.getId()}}">Dodaj</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
