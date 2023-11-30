@@ -7,7 +7,7 @@
     <title>Edytuj danie</title>
 </head>
 <body>
-<a href="/admin">Wróć</a>
+<a href="/admin/dish">Wróć</a>
 <div class="container">
 
     <div class="dish">
@@ -19,7 +19,7 @@
         <div class="dish-contain">
             <div class="dish-ingredient" th:each="dishIng : ${dish.getIngredients()}">
                     <p th:text="${dishIng.getName()}"></p>
-                    <a th:href="@{'/dishedit/del/' + ${dish.getId()} + '/' + ${dishIng.getId()}}">Usuń</a>
+                    <a th:href="@{'/admin/dishedit/del/' + ${dish.getId()} + '/' + ${dishIng.getId()}}">Usuń</a>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="list-of-ingredient">
         <div class="ingredient" th:each="ing : ${ingredients}">
             <p th:text="${ing.getName()}"></p>
-            <a th:href="@{'/dishedit/add/' + ${dish.getId()} + '/' + ${ing.getId()}}">Dodaj</a>
+            <a th:href="@{'/admin/dishedit/add/' + ${dish.getId()} + '/' + ${ing.getId()}}">Dodaj</a>
         </div>
     </div>
 </div>

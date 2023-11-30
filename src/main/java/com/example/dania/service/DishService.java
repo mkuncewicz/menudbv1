@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class DishService {
@@ -26,7 +25,7 @@ public class DishService {
 
     public List<Dish> getDishesFromCategory(Long categoryId){
         List<Dish> list = (List<Dish>) dishRepository.findAll();
-        return list.stream().filter(x -> x.getCategory().getId() == 1).toList();
+        return list.stream().filter(x -> x.getCategory().getId() == categoryId).toList();
     }
 
     public Dish getDish(Long dishId){
@@ -78,7 +77,6 @@ public class DishService {
             dishRepository.save(dish);
             ingredientRepository.save(ingredient);
         }
-
         return exist;
     }
 

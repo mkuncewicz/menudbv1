@@ -11,9 +11,9 @@
 <div class="container">
 
     <div class="edit">
-        <form action="ścieżka_do_skryptu_przetwarzającego" method="get">
+        <form method="get">
             <label>Wybierz kategorie:</label>
-            <select name="" id="">
+            <select name="category" id="categorySelect">
                 <option th:each="cat : ${categories}"
                         th:value="${cat.getId()}"
                         th:text="${cat.getName()}"
@@ -23,20 +23,20 @@
         </form>
         <br><br>
         Dodawanie:
-        <form th:action="@{/add-dish-2}" th:object="${newDish}" method="post">
+        <form th:action="@{/admin/add-dish-2}" th:object="${newDish}" method="post">
             <p>Nazwa: <input type="text"  th:field="*{name}" required></p>
             <p>Cena: <input type="number" step="0.01"  th:field="*{cost}" required></p>
             <input type="submit" value="Dodaj nowe danie">
         </form>
         <br><br>
         Usuwanie:
-        <form th:action="@{/delete-dish-2}" method="post">
+        <form th:action="@{/admin/delete-dish-2}" method="post">
             <p>ID: <input type="text" name="id" required></p>
             <input type="submit" value="Usuń danie">
         </form>
         <br><br>
         Edytowanie:
-        <form th:action="@{/update-dish-2}" th:object="${updateDish}"  method="post">
+        <form th:action="@{/admin/update-dish-2}" th:object="${updateDish}"  method="post">
             <p>ID:<input type="text" name="id" required></p>
             <p>Nazwa: <input type="text" th:field="*{name}"></p>
             <p>Cena: <input type="number" step="0.01"  th:field="*{cost}"></p>
@@ -52,11 +52,38 @@
             <p style="text-align: center;" th:text="${dish.getName()}"></p>
             <p style="text-align: center;" th:text="${dish.getCost()} + zł"></p>
             <center>
-                <a th:href="@{'/dishedit/' + ${dish.getId()}}">Składniki</a>
+                <a th:href="@{'/admin/dishedit/' + ${dish.getId()}}">Składniki</a>
             </center>
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById('categorySelect').addEventListener('change', function() {
+        var categoryId = this.value;
+        fetch('/admin/dishesByCategory?categoryId=' + categoryId)
+            .then(response => response.json())
+            .then(dishes => {
+                var dishesDiv = document.querySelector('.list-of-dishes');
+                dishesDiv.innerHTML = '';
+                dishes.forEach(dish => {
+                    var dishHtml =
+                        '<div class="dish">' +
+                        '<div class="id">'+
+                            '<p>'+
+                            dish.id +
+                            '</p>'+
+                        '</div>'+
+                        '<p style="text-align: center;">' + dish.name + '</p>' +
+                        '<p style="text-align: center;">' + dish.cost + 'zł</p>' +
+                        '<center><a href="/admin/dishedit/' + dish.id + '">Składniki</a></center>' +
+                        '</div>';
+                    dishesDiv.innerHTML += dishHtml;
+                });
+            });
+    });
+</script>
 
 </body>
 </html>

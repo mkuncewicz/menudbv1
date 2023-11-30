@@ -24,7 +24,7 @@ public class AdminEditDishController {
     @Autowired
     private IngredientService ingredientService;
 
-    @GetMapping("/dishedit/{dishId}")
+    @GetMapping("/admin/dishedit/{dishId}")
     public String home(@PathVariable Long dishId, Model model){
         Dish dish = dishService.getDish(dishId);
         Set<Ingredient> ingredientsOfDish = dish.getIngredients();
@@ -35,17 +35,17 @@ public class AdminEditDishController {
         return "editdish";
     }
 
-    @GetMapping("/dishedit/add/{dishId}/{ingredientId}")
+    @GetMapping("/admin/dishedit/add/{dishId}/{ingredientId}")
     public String addIngredientToDish(@PathVariable Long dishId,@PathVariable Long ingredientId){
         dishService.addIngredientToDish(dishId,ingredientId);
 
-        return "redirect:/dishedit/" + dishId;
+        return "redirect:/admin/dishedit/" + dishId;
     }
 
-    @GetMapping("/dishedit/del/{dishId}/{ingredientId}")
+    @GetMapping("/admin/dishedit/del/{dishId}/{ingredientId}")
     public String delIngredientToDish(@PathVariable Long dishId, @PathVariable Long ingredientId){
         dishService.removeIngredientFromDish(dishId,ingredientId);
 
-        return "redirect:/dishedit/" + dishId;
+        return "redirect:/admin/dishedit/" + dishId;
     }
 }

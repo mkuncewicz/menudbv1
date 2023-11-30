@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <link rel="stylesheet" href="/css/editcategory.css">
+</head>
+<body>
+<div class="container">
+    <div class="edit">
+
+        <br>
+        Dodawanie:
+        <form th:action="@{/admin/category/add-category}" method="post" th:object="${newCategory}">
+            <p>Nazwa: <input type="text" th:field="*{name}" required></p>
+            <input type="submit" value="Dodaj nową kategorie">
+        </form>
+        <br><br>
+        Usuwanie:
+        <form th:action="@{/admin/category/del-category}" method="post">
+            <p>ID: <input type="text" name="id" required></p>
+            <input type="submit" value="Usuń kategorie">
+
+        </form>
+        <br><br>
+        Edytowanie:
+        <form th:action="@{/admin/category/update-category}" th:object="${updateCategory}" method="post">
+            <p>ID:<input type="text" name="id" required></p>
+            <p>Nazwa: <input type="text" th:field="*{name}"></p>
+            <input type="submit" value="Zaktualizuj kategorie">
+        </form>
+    </div>
+
+    <div class="list-of-categories">
+        <div class="category" th:each="cat : ${categories}">
+            <div class="id">
+                <p th:text="${cat.getId()}"></p>
+            </div>
+            <p style="text-align: center;" th:text="${cat.getName()}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

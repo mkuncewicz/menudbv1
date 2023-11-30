@@ -9,10 +9,7 @@ import com.example.dania.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class AdminDishController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/admin")
+    @GetMapping("/admin/dish")
     public String home(Model model){
         List<Dish> dishList = dishService.getAllDishes();
         List<Category> categoryLit = categoryService.getAllCategories();
@@ -41,29 +38,35 @@ public class AdminDishController {
         return "home1";
     }
 
-    @PostMapping("/add-dish-2")
+    @GetMapping("admin/dishesByCategory")
+    @ResponseBody
+    public List<DishDto> getDishesByCategory(@RequestParam(name = "categoryId") Long categoryId){
+        List<Dish> dishList = dishService.getDishesFromCategory(categoryId);
+
+        return dishMapper.mapToListDto(dishList);
+    }
+
+    @PostMapping("admin/add-dish-2")
     public String addDish(@ModelAttribute("newDish") DishDto dishDto){
         dishDto.setCategoryId(1L); //Do usuniecia
         Dish saveDish = dishMapper.mapToEntity(dishDto);
         dishService.createDish(saveDish);
-        return "redirect:/admin";
+        return "redirect:/admin/dish";
     }
 
-    @PostMapping("/delete-dish-2")
+    @PostMapping("admin/delete-dish-2")
     public String deleteDish(@RequestParam(name = "id") Long dishId){
         dishService.deleteDish(dishId);
-        return "redirect:/admin";
+        return "redirect:/admin/dish";
     }
 
-    @PostMapping("/update-dish-2")
+    @PostMapping("admin/update-dish-2")
     public String updateDish(@RequestParam(name = "id") Long dishId, @ModelAttribute("updateDish") DishDto dishDto){
         dishDto.setCategoryId(1L); //Do usuniecia
         if (dishDto.getName() != null && dishDto.getName().isEmpty()) dishDto.setName(null);
         Dish updateDist = dishMapper.mapToEntity(dishDto);
         dishService.updateDish(dishId,updateDist);
 
-        return "redirect:/admin";
+        return "redirect:/admin/dish";
     }
-
-
 }

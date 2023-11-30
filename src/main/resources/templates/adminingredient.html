@@ -28,8 +28,8 @@
         <br><br>
         Edytowanie:
         <form th:action="@{/admin/ingredient/update-ingredient}" th:object="${updateIngredient}" method="post">
-            <p>ID:<input type="text" name="id"></p>
-            <p>Nazwa: <input type="text" th:field="*{name}"></p>
+            <p>ID:<input type="text" name="id" required></p>
+            <p>Nazwa: <input type="text" th:field="*{name}" required></p>
             <input type="submit" value="Zaktualizuj składnik">
         </form>
     </div>
