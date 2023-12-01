@@ -1,0 +1,35 @@
+body{
+    background-color: coral;
+}
+
+h1{
+    text-align: center;
+}
+
+.container{
+    background-color: aliceblue;
+    margin: 0 auto;
+    margin-top: 100px;
+    display: flex;
+    width: 40%;
+}
+
+.options{
+    background-color: blue;
+    width: 140px;
+    height: 180px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+}
+
+a{
+    color: white;
+}
+
+.options:hover{
+    background-color: rgb(66, 66, 114);
+}
