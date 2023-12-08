@@ -35,6 +35,13 @@ public class CategoryController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/image/{categoryId}")
+    public ResponseEntity<byte[]> getImage(@PathVariable Long categoryId){
+        Category category = categoryService.getCategory(categoryId);
+        byte[] imageData = category.getImage();
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageData);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
 

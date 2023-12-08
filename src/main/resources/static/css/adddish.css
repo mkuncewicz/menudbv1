@@ -1,0 +1,169 @@
+body{
+    background-color: #edddaf;
+}
+
+header{
+    color: rgb(254, 252, 252);
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.container{
+    margin-top: 20px;
+    display: flex;
+}
+
+.list-of-item{
+    width: 320px;
+}
+
+.order{
+    background-color: #57421c;
+    background-image: linear-gradient(320deg, #513501 90%, #69593b);
+    color: white;
+    height: 50px;
+    width: 100%;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    text-align: center;
+    font-weight: 400;
+}
+
+.item{
+    background-image: linear-gradient(300deg, #edc67d 90%, #f7ecd8);
+    width: 100%;
+    height: 75px;
+    margin-top: 2px;
+    display: flex;
+}
+
+p{
+    padding-right: 20px;
+
+}
+.itemcon{
+    display: flex;
+    align-items: center;
+    width: 65%;
+}
+
+.delete{
+    display: flex;
+    align-items: center;
+    width: 35%;
+}
+.delete :where(a){
+    text-align: right;
+    color: red;
+}
+
+a:hover{
+    color: rgb(111, 6, 6);
+}
+
+.confirm{
+    background-color: #e3aa42;
+    text-align: center;
+    color: white;
+    height: 30px;
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+}
+
+.confirm:hover{
+    background-color: #e4bf7b;
+    color: rgb(40, 39, 39);
+}
+
+.list-of-dishes{
+    margin-left: 100px;
+    float: right;
+    width: 800px;
+}
+
+.dish{
+    /* background-color: rgb(165, 156, 156); */
+    background-image: linear-gradient(150deg, rgb(165, 156, 156) 15%,rgb(54, 52, 52));
+    float: right;
+    margin-bottom: 5px;
+    width: 85%;
+    height: 150px;
+    border-radius: 2%;
+    padding: 10px;
+    display: flex;
+}
+
+.leftdish{
+    width: 75%;
+}
+
+.rightdish{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dol{
+    height: 100px;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add{
+    background-color: gray;
+    width: 70px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.add:hover{
+    background-color: rgb(199, 181, 181);
+}
+
+.add :where(a){
+    text-align: center;
+    width: 100%;
+    color: black;
+}
+
+.add :where(a):hover{
+    color: white;
+}
+
+button{
+    background-color: gray;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+h3{
+}
+
+
+.dishcost{
+    width: 10%;
+    float: right;
+    font-weight: bolder;
+}
+
+.dish-image {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    border-radius: 2%;
+}

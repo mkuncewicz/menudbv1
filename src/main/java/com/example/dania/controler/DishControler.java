@@ -39,6 +39,13 @@ public class DishControler {
         }
     }
 
+    @GetMapping("/image/{dishId}")
+    public ResponseEntity<byte[]> getImage(@PathVariable Long dishId){
+        Dish dish = dishService.getDish(dishId);
+        byte[] imageData = dish.getImage();
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageData);
+    }
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishDto> createDish(@RequestBody DishDto danie){

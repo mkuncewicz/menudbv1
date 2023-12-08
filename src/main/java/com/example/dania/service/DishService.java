@@ -46,6 +46,7 @@ public class DishService {
             if (updateDish.getName() != null)saveDish.setName(updateDish.getName());
             if (updateDish.getCategory() != null)saveDish.setCategory(updateDish.getCategory());
             if (updateDish.getCost() != null)saveDish.setCost(updateDish.getCost());
+            if (updateDish.getImage() != null && updateDish.getImage().length > 0) saveDish.setImage(updateDish.getImage());
             return dishRepository.save(saveDish);
         }
         return null;

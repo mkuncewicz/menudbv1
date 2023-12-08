@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -35,7 +37,7 @@ public class AdminDishController {
         model.addAttribute("updateDish",new DishDto());
         model.addAttribute("categories",categoryLit);
 
-        return "home1";
+        return "admindish";
     }
 
     @GetMapping("admin/dishesByCategory")
@@ -54,6 +56,16 @@ public class AdminDishController {
         return "redirect:/admin/dish";
     }
 
+    @PostMapping("admin/add-dish-3")
+    public String createNewDish(@ModelAttribute("newDish") DishDto dishDto,@RequestParam("image") MultipartFile file) throws IOException {
+        dishDto.setCategoryId(1L);
+        Dish saveDish = dishMapper.mapToEntity(dishDto);
+//        saveDish.setId(catId);
+        saveDish.setImage(file.getBytes());
+        dishService.createDish(saveDish);
+        return "redirect:/admin/dish";
+    }
+
     @PostMapping("admin/delete-dish-2")
     public String deleteDish(@RequestParam(name = "id") Long dishId){
         dishService.deleteDish(dishId);
@@ -65,6 +77,17 @@ public class AdminDishController {
         dishDto.setCategoryId(1L); //Do usuniecia
         if (dishDto.getName() != null && dishDto.getName().isEmpty()) dishDto.setName(null);
         Dish updateDist = dishMapper.mapToEntity(dishDto);
+        dishService.updateDish(dishId,updateDist);
+
+        return "redirect:/admin/dish";
+    }
+
+    @PostMapping("admin/update-dish-3")
+    public String updateDish2(@RequestParam(name = "id") Long dishId, @ModelAttribute("updateDish") DishDto dishDto,@RequestParam("image")MultipartFile file) throws IOException {
+        dishDto.setCategoryId(1L); //Do usuniecia
+        if (dishDto.getName() != null && dishDto.getName().isEmpty()) dishDto.setName(null);
+        Dish updateDist = dishMapper.mapToEntity(dishDto);
+        updateDist.setImage(file.getBytes());
         dishService.updateDish(dishId,updateDist);
 
         return "redirect:/admin/dish";

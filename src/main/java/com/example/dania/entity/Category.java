@@ -23,6 +23,10 @@ public class Category {
     @Column
     private String name;
 
+    @Lob
+    @Column(name = "image", columnDefinition = "MEDIUMBLOB")
+    private byte[] image;
+
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private List<Dish> dishes = new ArrayList<>();
 }

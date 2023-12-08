@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html xmlns:th="http:/www.thymeleaf.org" lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Sprawdzam czy dziala</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4Strona Główna</title>
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-
-    <div class="dish" th:each="dish : ${dishes}">
-        <p th:text="${dish.getId()}"></p>
-        <p th:text="${dish.getName()}"></p>
-        <a th:href="@{'/testowa/' + ${dish.getId()}}">Dodaj składniki</a>
+<header th:style="'background-image: url(' + @{/img/bg1.jpg} + ');'">Nazwa Twojej Restauracji</header>
+<div class="container">
+    <div class="order">
+        <div class="order-item">
+            <div class="order-item-amount">2x</div>
+            <div class="order-item-name">Margarita</div>
+        </div>
+        <div class="order-item">
+            <div class="order-item-amount">5x</div>
+            <div class="order-item-name">Burger wołowy</div>
+        </div>
+        <div class="order-item">
+            <div class="order-item-amount">7x</div>
+            <div class="order-item-name">Pepsi</div>
+        </div>
     </div>
 
-    <form th:action="@{/add-dish}" th:object="${newDish}" method="post">
-        <p>Nazwa: <input type="text" th:field="*{name}"></p>
-
-        <input type="submit" value="Dodaj nowe danie">
-
-    </form>
-
-    <form th:action="@{/delete-dish}" method="post">
-        <p>Nazwa: <input type="text" name="id"></p>
-        <input type="submit" value="Usuń Danie">
-    </form>
-
-    <form th:action="@{/update-dish}" th:object="${updateDish}" method="post">
-        <p>ID: <input type="text" name="id"></p>
-        <p>Nazwa: <input type="text" th:field="*{name}"></p>
-        <input type="submit" value="Zaktualizuj danie">
-    </form>
-
-    <a href="/v1/menu/ingredient">Zobacz składniki</a>
-
+    <div class="right">
+        <div class="category" th:each="cat : ${categories}">
+            <div class="name" th:text="${cat.getName()}">Burgery</div>
+            <img th:src="@{/v1/category/image/{id}(id=${cat.getId()})}">
+            <div class="enter-category">
+                <button type="submit">Wybierz</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

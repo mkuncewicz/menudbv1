@@ -34,7 +34,8 @@ public class CategoryService {
         Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
         if(categoryOptional.isPresent()){
             Category saveCategory = categoryOptional.get();
-            saveCategory.setName(updateCategory.getName());
+            if (updateCategory.getName() != null && !updateCategory.getName().isEmpty())saveCategory.setName(updateCategory.getName());
+            if (updateCategory.getImage() != null && updateCategory.getImage().length > 0) saveCategory.setImage(updateCategory.getImage());
             return categoryRepository.save(saveCategory);
         }
             return null;

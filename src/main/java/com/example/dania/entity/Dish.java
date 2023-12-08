@@ -30,6 +30,10 @@ public class Dish {
     @Column
     private Float cost;
 
+    @Lob
+    @Column(name = "image", columnDefinition = "MEDIUMBLOB")
+    private byte[] image;
+
     @ManyToMany
     @JoinTable(
             name="dishes_ingredients",

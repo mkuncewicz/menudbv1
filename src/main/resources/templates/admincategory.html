@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
-    <link rel="stylesheet" href="/css/editcategory.css">
+    <link rel="stylesheet" href="/css/editcategory2.css">
 </head>
 <body>
 <a href="/admin">Wróć</a>
@@ -13,8 +13,9 @@
 
         <br>
         Dodawanie:
-        <form th:action="@{/admin/category/add-category}" method="post" th:object="${newCategory}">
+        <form th:action="@{/admin/category/add-category2}" method="post" enctype="multipart/form-data" th:object="${newCategory}">
             <p>Nazwa: <input type="text" th:field="*{name}" required></p>
+            <p>Zdjecie:<input type="file" name="image"></p>
             <input type="submit" value="Dodaj nową kategorie">
         </form>
         <br><br>
@@ -26,10 +27,17 @@
         </form>
         <br><br>
         Edytowanie:
-        <form th:action="@{/admin/category/update-category}" th:object="${updateCategory}" method="post">
+        <form th:action="@{/admin/category/update-category2}" th:object="${updateCategory}" method="post" enctype="multipart/form-data">
             <p>ID:<input type="text" name="id" required></p>
             <p>Nazwa: <input type="text" th:field="*{name}"></p>
+            <p>Zdjecie:<input type="file" name="image"></p>
             <input type="submit" value="Zaktualizuj kategorie">
+        </form>
+        Dodaj zdjecie:
+        <form th:action="@{/admin/category/addImage}" method="post" enctype="multipart/form-data">
+            <p>ID:<input type="text" name="id"></p>
+            <p>Zdjecie:<input type="file" name="image"></p>
+            <input type="submit" value="Dodaj zdjecie">
         </form>
     </div>
 
@@ -39,6 +47,7 @@
                 <p th:text="${cat.getId()}"></p>
             </div>
             <p style="text-align: center;" th:text="${cat.getName()}"></p>
+            <img th:src="@{/v1/category/image/{id}(id=${cat.getId()})}" alt="Category Image"/>
         </div>
     </div>
 </div>

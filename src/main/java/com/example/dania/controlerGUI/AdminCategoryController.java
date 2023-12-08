@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -39,6 +41,14 @@ public class AdminCategoryController {
         return "redirect:/admin/category";
     }
 
+    @PostMapping("/admin/category/add-category2")
+    public String addCategory2(@ModelAttribute("newCategory")CategoryDto categoryDto, @RequestParam("image")MultipartFile file) throws IOException {
+        Category saveCategory = categoryMapper.mapToEntity(categoryDto);
+        saveCategory.setImage(file.getBytes());
+        categoryService.createCategory(saveCategory);
+        return "redirect:/admin/category";
+    }
+
     @PostMapping("/admin/category/del-category")
     public String delCategory(@RequestParam(name = "id") Long catId){
         categoryService.deleteCategory(catId);
@@ -50,6 +60,26 @@ public class AdminCategoryController {
     public String updateCategory(@RequestParam(name = "id") Long catId, @ModelAttribute("updateCategory") CategoryDto categoryDto){
         Category category = categoryMapper.mapToEntity(categoryDto);
         categoryService.updateCategory(catId,category);
+
+        return "redirect:/admin/category";
+    }
+
+    @PostMapping("/admin/category/update-category2")
+    public String updateCategory2(@RequestParam(name = "id")Long catId, @ModelAttribute("updateUsers") CategoryDto categoryDto, @RequestParam("image")MultipartFile file) throws IOException {
+        Category category = categoryMapper.mapToEntity(categoryDto);
+        category.setImage(file.getBytes());
+        categoryService.updateCategory(catId,category);
+
+        return "redirect:/admin/category";
+
+    }
+
+    @PostMapping("/admin/category/addImage")
+    public String addImageCategory(@RequestParam(name = "id")Long catId, @RequestParam("image")MultipartFile file) throws IOException {
+        byte[] saveImage = file.getBytes();
+        Category saveCategory = new Category();
+        saveCategory.setImage(saveImage);
+        categoryService.updateCategory(catId, saveCategory);
 
         return "redirect:/admin/category";
     }
