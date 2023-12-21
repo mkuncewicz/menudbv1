@@ -1,7 +1,6 @@
 package com.example.dania.controler;
 
-import com.example.dania.dto.CustomerOrderDto;
-import com.example.dania.entity.CustomerOrder;
+import com.example.dania.dto.CustomerOrder;
 import com.example.dania.mapper.CustomerOrderMapper;
 import com.example.dania.service.CustomerOrderService;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +21,15 @@ public class CustomerOrderController {
     private final CustomerOrderMapper orderMapper;
 
     @GetMapping
-    public ResponseEntity<List<CustomerOrderDto>> getAllOrders(){
+    public ResponseEntity<List<CustomerOrder>> getAllOrders(){
 
         return ResponseEntity.ok(orderMapper.mapToListDto(orderService.getAllOrders()));
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<CustomerOrderDto> getOrder(@PathVariable Long orderId) {
+    public ResponseEntity<CustomerOrder> getOrder(@PathVariable Long orderId) {
 
-        CustomerOrder order = orderService.getOrder(orderId);
+        com.example.dania.entity.CustomerOrder order = orderService.getOrder(orderId);
 
         if (order != null) {
             return ResponseEntity.ok(orderMapper.mapToDto(order));
@@ -39,14 +38,14 @@ public class CustomerOrderController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomerOrderDto> createOrder(@RequestBody CustomerOrderDto orderDto){
+    public ResponseEntity<CustomerOrder> createOrder(@RequestBody CustomerOrder orderDto){
 
         return ResponseEntity.ok(orderMapper.mapToDto(orderService.createOrder(orderMapper.mapToEntity(orderDto))));
     }
 
     @PutMapping("/{orderId}")
-    public ResponseEntity<CustomerOrderDto> updateOrder(@PathVariable Long orderId, @RequestBody CustomerOrderDto orderDto){
-        CustomerOrder saveOrder = orderService.updateOrder(orderId,orderMapper.mapToEntity(orderDto));
+    public ResponseEntity<CustomerOrder> updateOrder(@PathVariable Long orderId, @RequestBody CustomerOrder orderDto){
+        com.example.dania.entity.CustomerOrder saveOrder = orderService.updateOrder(orderId,orderMapper.mapToEntity(orderDto));
 
         if(saveOrder != null){
             return ResponseEntity.ok(orderMapper.mapToDto(saveOrder));

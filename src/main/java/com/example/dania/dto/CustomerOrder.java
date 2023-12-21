@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerOrderDto {
+public class CustomerOrder {
 
     private Long id;
 
