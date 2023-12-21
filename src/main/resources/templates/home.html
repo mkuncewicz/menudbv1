@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona Główna</title>
-    <link rel="stylesheet" th:href="@{/css/home4.css}">
+    <link rel="stylesheet" th:href="@{/css/home5.css}">
 </head>
 <body>
 <header>Nazwa Twojej Restauracji</header>
@@ -19,9 +19,10 @@
             </div>
             <div class="delete">
                 <p th:text="${orderItem.getCost()} + 'zł'"></p>
-                <a th:href="@{/removeItem/{id}(id=${orderItem.id})}">Usuń</a>
+                <a th:href="@{/remove/{orderId}/{dishId}(orderId=${orderItems2.getId()}, dishId=${orderItem.getId()})}">Usuń</a>
             </div>
         </div>
+        <p class="totalCost" th:text="${orderItems2.getTotalCost()}"></p>
         <div class="confirm">Złóż zamówienie</div>
     </div>
 

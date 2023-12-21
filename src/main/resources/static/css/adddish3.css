@@ -1,0 +1,127 @@
+body {
+    background-color: #f3f4f6;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.list-of-item, .list-of-dishes {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 45%;
+    max-width: 45%;
+}
+
+.list-of-dishes{
+    margin-left: 20px;
+}
+
+.list-of-item .order, .list-of-item .confirm {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.list-of-item .confirm:hover {
+    background-color: #66bb6a;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.itemcon {
+    flex-grow: 1;
+}
+
+.delete {
+    color: #f44336;
+    cursor: pointer;
+}
+
+.delete a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.delete a:hover {
+    text-decoration: underline;
+}
+
+.dish {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.leftdish {
+    flex: 70%;
+    padding-right: 15px;
+}
+
+.rightdish {
+    flex: 30%;
+    text-align: center;
+}
+
+.dish h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.dish .do-zmiany {
+    color: #666;
+}
+
+.dol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add, .dishcost {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add:hover {
+    background-color: #66bb6a;
+}
+
+.dish-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class HomeController {
    private DishMapper dishMapper;
 
     @GetMapping("/")
-    public String home(Model model, HttpSession session) {
+    public String home(Model model) {
         List<CategoryDto> categoryDtoList = categoryMapper.mapToListDto(categoryService.getAllCategories());
         model.addAttribute("categories",categoryDtoList);
 
@@ -46,6 +47,16 @@ public class HomeController {
         CustomerOrder customerOrder = customerOrderService.getOrder(1L);
         model.addAttribute("orderItems2", customerOrder);
 
+
+
         return "home";
+    }
+
+    @GetMapping("/remove/{orderId}/{dishId}")
+    public String removeDishFromOrder(@PathVariable Long orderId, @PathVariable Long dishId){
+
+        customerOrderService.removeDishFromOrder(orderId,dishId);
+
+        return  "redirect:/";
     }
 }

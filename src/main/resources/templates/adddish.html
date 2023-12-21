@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodaj produkt</title>
-    <link rel="stylesheet" href="/css/adddish2.css">
+    <link rel="stylesheet" href="/css/adddish3.css">
 </head>
 <body>
 <header th:style="'background-image: url(' + @{/img/bg1.jpg} + ');'"></header>
@@ -18,7 +18,7 @@
             </div>
             <div class="delete">
                 <p th:text="${orderItem.getCost()}"></p>
-                <a href="">Usuń</a>
+                <a th:href="@{/add/{catId}/remove/{orderId}/{dishId}(catId=${cat}, orderId=${orderItems2.getId()}, dishId=${orderItem.getId})}">Usuń</a>
             </div>
         </div>
         <p class="totalCost" th:text="${orderItems2.getTotalCost()}"></p>
@@ -33,7 +33,7 @@
                     <p>Składniki: Ser, Szynka, Ciasto</p>
                 </div>
                 <div class="dol">
-                    <form th:action="@{'/v1/order/' + ${orderItems2.getId()} + '/' + ${dish.getId()}}" method="post">
+                    <form th:action="@{'/add/'+ ${cat} +'/plus/' + ${orderItems2.getId()} + '/' + ${dish.getId()}}" method="post">
                         <button type="submit" class="add">Dodaj</button>
                     </form>
                     <div class="dishcost" th:text="${dish.getCost()}">
