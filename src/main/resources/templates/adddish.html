@@ -24,28 +24,25 @@
         <div class="confirm">Złóż zamówienie</div>
     </div>
 
-    <div class="list-of-dishes">
+    <div class="list-of-dishes" th:each="dish : ${dishes}">
         <div class="dish">
             <div class="leftdish">
-                <h3>Margarita</h3>
-                    <div class="do zmiany">
-                        <p>Składniki: Ser, Szynka, Ciasto</p>
+                <h3 th:text="${dish.getName()}"></h3>
+                <div class="do zmiany">
+                    <p>Składniki: Ser, Szynka, Ciasto</p>
+                </div>
+                <div class="dol">
+                    <div class="add">
+                        <a href="">Dodaj</a>
                     </div>
-                    <div class="dol">
-                        <div class="add">
-                            <a href="">Dodaj</a>
-                        </div>
-                        <div class="dishcost">
-                            29,99zł
-                        </div>
+                    <div class="dishcost" th:text="${dish.getCost()}">
                     </div>
+                </div>
             </div>
             <div class="rightdish">
-<!--                <img src="classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="opis_zdjęcia" class="dish-image">-->
+                <!--                <img src="classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="opis_zdjęcia" class="dish-image">-->
             </div>
         </div>
-        <div class="dish"></div>
-        <div class="dish"></div>
     </div>
 </div>
 </body>

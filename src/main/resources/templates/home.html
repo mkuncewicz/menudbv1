@@ -28,11 +28,16 @@
         <div class="category" th:each="cat : ${categories}">
             <div class="name" th:text="${cat.getName()}">Burgery</div>
             <img th:src="@{/v1/category/image/{id}(id=${cat.getId()})}">
-            <div class="enter-category">
-                <button type="submit">Wybierz</button>
-            </div>
+
+
+            <form th:action="@{'/add/' + ${cat.getId()}}" method="get">
+                <div class="enter-category">
+                    <button type="submit">Wybierz</button>
+                </div>
+            </form>
         </div>
     </div>
+
 </div>
 </body>
 </html>
