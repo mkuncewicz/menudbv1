@@ -11,25 +11,17 @@
 <div class="container">
     <div class="list-of-item">
         <div class="order"></div>
-        <div class="item">
-            <div class="itemcon">
-                <p>3x Pizza</p>
-            </div>
-            <div class="delete">
-                <p>59,99zł</p>
-                <a href="">Usuń</a>
-            </div>
-        </div>
 
-        <div class="item">
+        <div class="item" th:each="orderItem : ${orderItems2.getDishes()}">
             <div class="itemcon">
-                <p>2x Cola</p>
+                <p th:text="${orderItem.getName()}"></p>
             </div>
             <div class="delete">
-                <p>12,99zł</p>
+                <p th:text="${orderItem.getCost()}"></p>
                 <a href="">Usuń</a>
             </div>
         </div>
+        <p class="totalCost" th:text="${orderItems2.getTotalCost()}"></p>
         <div class="confirm">Złóż zamówienie</div>
     </div>
 
@@ -41,9 +33,9 @@
                     <p>Składniki: Ser, Szynka, Ciasto</p>
                 </div>
                 <div class="dol">
-                    <div class="add">
-                        <a href="">Dodaj</a>
-                    </div>
+                    <form th:action="@{'/v1/order/' + ${orderItems2.getId()} + '/' + ${dish.getId()}}" method="post">
+                        <button type="submit" class="add">Dodaj</button>
+                    </form>
                     <div class="dishcost" th:text="${dish.getCost()}">
                     </div>
                 </div>

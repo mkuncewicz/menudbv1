@@ -2,8 +2,10 @@ package com.example.dania.controlerGUI;
 
 
 import com.example.dania.dto.DishDto;
+import com.example.dania.entity.CustomerOrder;
 import com.example.dania.entity.Dish;
 import com.example.dania.mapper.DishMapper;
+import com.example.dania.service.CustomerOrderService;
 import com.example.dania.service.DishService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,19 @@ public class HomeAddController {
     @Autowired
     private DishMapper dishMapper;
 
-    @GetMapping("/add/{catId}")
-    public String addDishToOrder(Model model, @PathVariable Long catId){
-        List<DishDto> dishDtoList = dishMapper.mapToListDto(dishService.getDishesFromCategory(catId));
+    @Autowired
+    private CustomerOrderService customerOrderService;
 
+    @GetMapping("/add/{catId}")
+    public String addDishToOrder(Model model, @PathVariable Long catId, HttpSession session){
+        List<DishDto> dishDtoList = dishMapper.mapToListDto(dishService.getDishesFromCategory(catId));
         model.addAttribute("dishes",dishDtoList);
+
+        List<DishDto> itemsOrder = dishMapper.mapToListDto(customerOrderService.getOrder(1L).getDishes());
+        model.addAttribute("orderItems",itemsOrder);
+
+        CustomerOrder customerOrder = customerOrderService.getOrder(1L);
+        model.addAttribute("orderItems2", customerOrder);
 
         return "adddish";
     }
